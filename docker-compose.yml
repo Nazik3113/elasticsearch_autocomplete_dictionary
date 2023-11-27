@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  elixir_application:
+    container_name: hsa1011-elixir-container
+    build: ./elastic_autocomplete
+    ports:
+      - 4002:4000
+    networks:
+      - hsa1011
+    depends_on:
+      - elasticsearch
+      - kibana
+
+  elasticsearch:
+    container_name: hsa1011-es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+    environment:
+      - MEM_LIMIT=1073741824
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - hsa1011
+
+  kibana:
+    container_name: hsa1011-kb-container
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://hsa1011-es-container:9200
+    networks:
+      - hsa1011
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+
+networks:
+  hsa1011:
+    name: hsa1011
