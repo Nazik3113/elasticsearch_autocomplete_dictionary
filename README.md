@@ -3,7 +3,7 @@
 To start application run the simple command:
 
 ```bash
-docker-compose up -d
+docker-compose up
 ```
 
 It will run the applications:
