@@ -23,11 +23,7 @@ Replace a `word` variable with a real word that you want to find and a `limit` v
 * Open link in a browser [http://localhost:4002/api/dictionary?word=ukr&limit=50](http://localhost:4002/api/dictionary?word=ukr&limit=50)
  * Make a curl request 
     ```bash
-    curl --location --request GET 'http://localhost:4002/api/dictionary?word=ukr&limit=50' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "phone": "380968104516"
-    }'
+    curl --location --request GET 'http://localhost:4002/api/dictionary?word=ukr&limit=50'
     ```
 
 # Examples
